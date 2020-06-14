@@ -393,6 +393,43 @@ sys_chdir(void)
   return 0;
 }
 
+
+
+off_t
+sys_lseek(void)
+{
+	int whence, size;
+	int n;
+	off_t offset;
+	struct file *f;
+	
+	//get args and struct file pointer
+	if(argfd(0, 0, &f) < 0 || argint(1, &n) < 0 || argint(2, &whence) < 0)
+		return -1;
+	offset = (off_t)n;
+	
+	if(whence != SEEK_SET && whence != SEEK_CUR && whence != SEEK_END)
+		return (off_t)-1;
+		
+	size = f->ip->size;
+	
+	if(whence == SEEK_SET){
+		f->off = offset;
+	}
+	else if(whence == SEEK_CUR){
+		//from this position
+		f->off += offset;
+	}
+	else{
+		f->off = size + offset;
+	}
+	
+	return f->off;
+	
+}
+
+
+
 int
 sys_exec(void)
 {

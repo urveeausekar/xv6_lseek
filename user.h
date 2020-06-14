@@ -1,5 +1,10 @@
 struct stat;
 struct rtcdate;
+typedef void (*sighandler_t)(int);
+typedef int pid_t;
+#define SEEK_SET 0
+#define SEEK_CUR 1
+#define SEEK_END 2
 
 // system calls
 int fork(void);
@@ -23,6 +28,11 @@ int getpid(void);
 char* sbrk(int);
 int sleep(int);
 int uptime(void);
+
+off_t lseek(int fd, off_t offset, int whence);
+
+
+
 
 // ulib.c
 int stat(const char*, struct stat*);

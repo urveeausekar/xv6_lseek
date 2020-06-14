@@ -2,6 +2,7 @@ struct stat;
 struct rtcdate;
 typedef void (*sighandler_t)(int);
 typedef int pid_t;
+typedef uint off_t;
 #define SEEK_SET 0
 #define SEEK_CUR 1
 #define SEEK_END 2

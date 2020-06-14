@@ -16,6 +16,7 @@
 #include "file.h"
 #include "fcntl.h"
 
+typedef uint off_t;
 // Fetch the nth word-sized system call argument as a file descriptor
 // and return both the descriptor and the corresponding struct file.
 static int
